@@ -34,12 +34,6 @@ See `src/utils/index.ts` for the full list of utils and pinia stores.
 - [x] Haptic feedback
 - [x] Organized folder and file structure
 - [x] Dark mode (theme/color)
-- [ ] Chat UI - In Progress
-
-### Coming Later
-
-- [ ] Fastlane deploy
-- [ ] Push notifications service
 
 ## Getting Started
 
