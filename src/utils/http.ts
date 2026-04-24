@@ -34,38 +34,41 @@ export const http = function (params: RequestParams): Promise<Record<string, any
     return Http.request(request)
       .then(
         (response: NativeScriptHttpResponse) => {
-          if (response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 204) {
+          const statusCode = response.statusCode;
+          const rawContent = response.content;
+
+          if (statusCode >= 200 && statusCode < 300) {
+            debug.log(`🌐 ✅ ${statusCode} ${request.url}`);
+            const text = rawContent?.toString() ?? "";
+            if (!text) return resolve({});
             try {
-              debug.log(`🌐 ✅ ${response.statusCode} ${request.url}`);
-              const body = response.content && response.content.toString() ? response.content.toJSON() : {};
+              const body = rawContent!.toJSON();
               debug.out(body, "🌐 response");
               return resolve(body);
-            } catch (error) {
-              debug.log(`🌐 ⛔ Could not parse response: ${response.content}`);
-              return reject();
+            } catch {
+              debug.log(`🌐 ⚠️ Non-JSON response — returning raw text`);
+              return resolve({ raw: text });
             }
-          } else if (response.statusCode === 500) {
-            debug.log(`🌐 🔥 ${response.statusCode} ${request.url} — ${response.content}`);
-            return reject();
-          } else if (response.statusCode === 429) {
-            debug.log(`🌐 ⚠️ 429 Too Many Requests — ${request.url}`);
-            return reject();
-          } else {
-            debug.log(`🌐 ⛔ ${response.statusCode} ${request.url} — ${response.content}`);
-            const contentWithStatusCode = response.content as any;
-            contentWithStatusCode.serverStatusCode = response.statusCode;
-
-            return reject();
           }
+
+          const content = rawContent?.toString() ?? "";
+          if (statusCode === 429) {
+            debug.log(`🌐 ⚠️ 429 Too Many Requests — ${request.url}`);
+          } else if (statusCode >= 500) {
+            debug.log(`🌐 🔥 ${statusCode} ${request.url} — ${content}`);
+          } else {
+            debug.log(`🌐 ⛔ ${statusCode} ${request.url} — ${content}`);
+          }
+          return reject({ statusCode, content });
         },
         (e: Error) => {
           debug.log(`🌐 💥 Request crashed: ${e}`);
-          return reject();
+          return reject({ statusCode: 0, error: e });
         }
       )
       .catch((e: Error) => {
         debug.log(`🌐 💥 Request crashed: ${e}`);
-        return reject();
+        return reject({ statusCode: 0, error: e });
       });
   });
 };

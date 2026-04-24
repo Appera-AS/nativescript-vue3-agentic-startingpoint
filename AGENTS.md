@@ -100,7 +100,7 @@ Path aliases: `@/*` and `~/*` both resolve to `src/*`. Prefer `@/…`.
 - **Every page is wrapped in `<XPage>`**. Put content inside; `XPage` provides the Drawer shell and theme-aware backgrounds.
 - **Global components** (registered in `src/app.ts`): `XPage`, `XIcon`, `XLabel`, `XButton`, `XScrollView`. Others are imported per-file.
 - **SFC shape**: `<template>` first, then `<script lang="ts" setup>`. Double quotes, semicolons, 2-space indent. Props with `defineProps({ name: { type: String, default: "" } })`.
-- **No tap-scale animations in components** — `TouchManager` applies a global down/up scale in `boot/applicationEvents.ts`.
+- **Tap-scale animation** — `XButton` handles its own 95% down/up scale via `@touch`. For other tappable elements (icons, layouts with `@tap`), add an ad-hoc animation only if the interaction needs feedback.
 
 ### State (Pinia)
 All stores follow this composition-API shape (see `src/pinia/settings.ts`):
@@ -169,7 +169,6 @@ export const useX = defineStore("x", () => {
 - Don't hard-code colors or font sizes — use the theme map and `$.useSettings().fontSize(...)`.
 - Don't call `$navigateTo` / `$showModal` directly — use `$.page` and `$.sheet`.
 - Don't add a translation to only one of `en.ts` / `no.ts`.
-- Don't add per-component tap-scale animations — global `TouchManager` already handles it.
 - Don't rename the `X` prefix or move atoms/organisms/pages out of their folders.
 - Don't use `console.log` in application code — route through `$.debug.log`. Leave `console.error` for real error paths.
 

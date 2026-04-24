@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import $ from "@/utils";
 import { watch, ref, nextTick } from "nativescript-vue";
-import { type ScrollView, Screen } from "@nativescript/core";
+import { type ScrollView, Screen, isAndroid, isIOS } from "@nativescript/core";
 
 const scrollView = ref<ScrollView>();
 
@@ -43,8 +43,11 @@ watch(
 watch(
   () => $.useSettings().scrollDisabled,
   (newVal) => {
-    if (scrollView.value) {
+    if (!scrollView.value) return;
+    if (isAndroid && scrollView.value.android) {
       scrollView.value.android.setScrollEnabled(!newVal);
+    } else if (isIOS && scrollView.value.ios) {
+      (scrollView.value.ios as UIScrollView).scrollEnabled = !newVal;
     }
   }
 );
