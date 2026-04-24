@@ -1,6 +1,6 @@
 <template>
   <Frame>
-    <XPage />
+    <Page :actionBarHidden="true" />
   </Frame>
 </template>
 <script lang="ts" setup>
