@@ -48,7 +48,7 @@ See `src/utils/index.ts` for the full list of utils and pinia stores.
 2. Clone your forked repository:
 
    ```
-   git clone https://github.com/your-username/ns-vue3-boilerplate.git my-app-name
+   git clone https://github.com/your-username/nativescript-vue3-agentic-startingpoint.git my-app-name
    ```
 
 3. Navigate to your project directory:
