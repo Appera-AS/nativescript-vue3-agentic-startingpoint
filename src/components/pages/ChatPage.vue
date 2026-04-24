@@ -122,17 +122,24 @@ function checkScrollToBottom() {
     opacity: showButton ? 1 : 0,
   });
 }
-const throttledOnChatScroll = $.throttle((args: { object: CollectionView; scrollOffset: number; plushViewToMove?: [] }) => {
+const throttledOnChatScroll = $.throttle((args: { object: CollectionView; scrollOffset: number; pushViewToMove?: [] }) => {
   checkScrollToBottom();
 }, 100);
 
+function appendMessage(msg: { text: string; side: "left" | "right" }) {
+  for (let i = messages.value.length - 1; i >= 0; i--) {
+    const prev = messages.value.getItem(i);
+    if (prev.side === msg.side && prev.isLast) {
+      messages.value.setItem(i, { ...prev, isLast: false });
+      break;
+    }
+  }
+  messages.value.push({ ...msg, isLast: true });
+}
+
 function sendMessage() {
   if (!newMessage.value) return;
-  messages.value.push({
-    text: newMessage.value.trim(),
-    side: "right",
-    isLast: true,
-  });
+  appendMessage({ text: newMessage.value.trim(), side: "right" });
   newMessage.value = "";
   setTimeout(() => {
     scrollToBottom();
@@ -165,11 +172,7 @@ const seedMessages: { text: string; side: "left" | "right" }[] = [
 
 onMounted(() => {
   for (const msg of seedMessages) {
-    messages.value.push({
-      text: msg.text,
-      side: msg.side,
-      isLast: true,
-    });
+    appendMessage(msg);
   }
   setTimeout(() => {
     scrollToBottom();
@@ -178,12 +181,12 @@ onMounted(() => {
 });
 
 function onScroll() {
-  if (isIOS && !isOpeningKeyboard.value) {
-    const page = Frame.topmost().currentPage;
-    const pageViewIos = page.ios.view as UIView;
-
-    scrollView.value.scrollToVerticalOffset(scrollView.value.scrollableHeight - pageViewIos.safeAreaInsets.bottom, false);
-  }
+  if (!isIOS || isOpeningKeyboard.value) return;
+  const page = Frame.topmost()?.currentPage;
+  const pageViewIos = page?.ios?.view as UIView | undefined;
+  const sv = scrollView.value;
+  if (!pageViewIos || !sv) return;
+  sv.scrollToVerticalOffset(sv.scrollableHeight - pageViewIos.safeAreaInsets.bottom, false);
 }
 
 function onFocus() {

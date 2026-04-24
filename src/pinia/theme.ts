@@ -127,7 +127,7 @@ export const useTheme = defineStore("theme", () => {
       // @ts-ignore
       const iqKeyboard = IQKeyboardManager.sharedManager();
       iqKeyboard.overrideKeyboardAppearance = true;
-      iqKeyboard.keyboardAppearance = isDarkMode ? UIKeyboardAppearance.Dark : UIKeyboardAppearance.Light;
+      iqKeyboard.keyboardAppearance = isDarkMode.value ? UIKeyboardAppearance.Dark : UIKeyboardAppearance.Light;
     }
   }
 

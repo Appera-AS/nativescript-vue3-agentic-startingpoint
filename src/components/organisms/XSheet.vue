@@ -63,10 +63,10 @@ onMounted(() => {
 });
 
 function onBack() {
-  // Implement back functionality
+  $.sheet.back();
 }
 
 function onClose() {
-  // Implement close functionality
+  $.sheet.close();
 }
 </script>

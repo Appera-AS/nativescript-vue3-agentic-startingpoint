@@ -7,6 +7,7 @@
     :color="computedColor"
     :fontSize="$.useSettings().fontSize(fontSize)"
     @touch="onTouch"
+    @tap="$emit('tap', $event)"
   />
 </template>
 
@@ -14,6 +15,8 @@
 import $ from "@/utils";
 import { computed, ref } from "nativescript-vue";
 import { CoreTypes, TouchGestureEventData } from "@nativescript/core";
+
+defineEmits(["tap"]);
 
 const props = defineProps({
   i: { type: String, default: "" },
