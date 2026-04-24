@@ -1,0 +1,25 @@
+export default {
+	'general_close': 'Lukk',
+	'general_back': 'Tilbake',
+	'general_writeAMessage': 'Skriv en melding...',
+
+	'drawer_title': 'Meny',
+	'drawer_chat': 'Chat',
+	'drawer_settings': 'Innstillinger',
+
+	'settings_title': 'Innstillinger',
+	'settings_appearance': 'Utseende',
+	'settings_text': 'Tekst',
+	'settings_darkMode': 'Mørk modus',
+	'settings_language': 'Språk',
+	'settings_fontSize': 'Tekststørrelse',
+	'settings_fontSize_small': 'Liten',
+	'settings_fontSize_normal': 'Normal',
+	'settings_fontSize_large': 'Stor',
+	'settings_debug': 'Debug-logger',
+	'settings_debug_enable': 'Aktiver debug-logger',
+	'settings_debug_bootstrap': 'Bootstrap-logger',
+	'settings_debug_pinia': 'Pinia-logger',
+	'settings_debug_network': 'Nettverkslogger',
+	'settings_icons': 'Ikoner',
+}

@@ -1,0 +1,39 @@
+{
+  "name": "replaceme",
+  "main": "src/app.ts",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=25.0.0"
+  },
+  "scripts": {
+    "ios-log": "ns run ios --no-hmr 2>&1 | tee logs/debug-ios.log",
+    "android-log": "ns run android --no-hmr 2>&1 | tee logs/debug-android.log"
+  },
+  "dependencies": {
+    "@nativescript-community/perms": "^2.3.3",
+    "@nativescript-community/ui-collectionview": "^5.3.46",
+    "@nativescript-community/ui-drawer": "^0.1.28",
+    "@nativescript-community/ui-image": "^4.5.3",
+    "@nativescript-community/ui-lottie": "^6.0.0",
+    "@nativescript-community/ui-pulltorefresh": "^2.5.3",
+    "@nativescript-community/ui-svg": "^0.2.6",
+    "@nativescript-use/vue": "^0.0.44",
+    "@nativescript/core": "~9.0.0",
+    "@nativescript/haptics": "^3.1.0",
+    "@nativescript/iqkeyboardmanager": "^2.1.1",
+    "nativescript-vue": "3.0.1"
+  },
+  "devDependencies": {
+    "@nativescript/android": "~9.0.0",
+    "@nativescript/ios": "~9.0.0",
+    "@nativescript/tailwind": "~2.1.0",
+    "@nativescript/types": "~9.0.0",
+    "@nativescript/webpack": "~5.0.25",
+    "@types/node": "~17.0.21",
+    "pinia": "^2.2.2",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vue": "^3.5.4"
+  }
+}

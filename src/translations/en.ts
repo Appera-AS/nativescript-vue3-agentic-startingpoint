@@ -1,0 +1,25 @@
+export default {
+	'general_close': 'Close',
+	'general_back': 'Back',
+	'general_writeAMessage': 'Write a message...',
+
+	'drawer_title': 'Menu',
+	'drawer_chat': 'Chat',
+	'drawer_settings': 'Settings',
+
+	'settings_title': 'Settings',
+	'settings_appearance': 'Appearance',
+	'settings_text': 'Text',
+	'settings_darkMode': 'Dark mode',
+	'settings_language': 'Language',
+	'settings_fontSize': 'Font size',
+	'settings_fontSize_small': 'Small',
+	'settings_fontSize_normal': 'Normal',
+	'settings_fontSize_large': 'Large',
+	'settings_debug': 'Debug logs',
+	'settings_debug_enable': 'Enable debug logs',
+	'settings_debug_bootstrap': 'Bootstrap logs',
+	'settings_debug_pinia': 'Pinia logs',
+	'settings_debug_network': 'Network logs',
+	'settings_icons': 'Icons',
+}
