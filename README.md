@@ -1,6 +1,11 @@
+<img height="275" alt="screen-1-portrait" src="https://github.com/user-attachments/assets/4e480f33-debd-4bec-878c-478104a3c122" />
+<img height="275" alt="screen-2-portrait" src="https://github.com/user-attachments/assets/e0bdf132-0d8b-4360-8f8d-0e2581578931" />
+<img height="275" alt="screen-3-portrait" src="https://github.com/user-attachments/assets/752fb621-ffb3-431d-80fc-ae8f8f1b018d" />
+
 # NativeScript Vue 3 Boilerplate
 
 A comprehensive boilerplate for NativeScript with Vue 3, designed to kickstart your mobile app development. This template includes a variety of pre-built components, utility functions, and essential features commonly used in mobile applications. It provides a solid foundation for creating robust and scalable mobile apps with NativeScript and Vue 3.
+
 
 ## Utils
 
